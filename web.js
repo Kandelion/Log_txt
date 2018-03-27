@@ -5,7 +5,7 @@ const fs = require('fs')
 app.get('/', (req, res) => res.send('Hello World!'))
 
 var seq = 0
-app.get('/log', function(req, res) {
+app.get('/update', function(req, res) {
     fs.appendFile('log.txt', JSON.stringify(req.query)+"\n", function (err){
         if(err) throw err
         console.log("%j", req.query)
@@ -13,7 +13,7 @@ app.get('/log', function(req, res) {
     });
 })
 
-app.get('/dump', function(req, res) {
+app.get('/get', function(req, res) {
     fs.readFile('log.txt', 'utf-8', function(err, data) {
         if(err) throw err
         res.end(String(data))
